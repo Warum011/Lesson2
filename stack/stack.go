@@ -5,21 +5,18 @@ import (
 	"fmt"
 )
 
-// StackOnSlice - стек на базе slice-а
 type StackOnSlice struct {
-	items []int // элементы стека
-	size  int   // размер стека
+	items []int
+	size  int
 }
 
-// NewStackOnSlice - конструктор стека
 func NewStackOnSlice() *StackOnSlice {
 	return &StackOnSlice{
-		items: make([]int, 0), // в момент создания стек пустой
-		size:  0,              // в момент создания размер стека равен 0
+		items: make([]int, 0),
+		size:  0,
 	}
 }
 
-// Print - возвращает строковое представление стека
 func (s *StackOnSlice) Print() string {
 	result := ""
 	for i := s.size - 1; i >= 0; i-- {
@@ -28,19 +25,18 @@ func (s *StackOnSlice) Print() string {
 	return result
 }
 
-// Empty - возвращает признак пустой ли стек
 func (s *StackOnSlice) Empty() bool {
 	return s.size == 0
 }
 
 func (s *StackOnSlice) increaseSlice() {
-	newCount := s.size * 2 // в newCount кладем новый размер слайса
-	if s.size == 0 {       // если текущий размер 0, то по умолчанию задаем размер 4
+	newCount := s.size * 2
+	if s.size == 0 {
 		newCount = 4
 	}
-	newSlice := make([]int, newCount) // создаем новый слайс
-	copy(newSlice, s.items)           // копируем элементы из старого слайса в новый
-	s.items = newSlice                // обновляем ссылку на элементы стека новым слайсом
+	newSlice := make([]int, newCount)
+	copy(newSlice, s.items)
+	s.items = newSlice
 }
 
 func (s *StackOnSlice) Push(item int) {
